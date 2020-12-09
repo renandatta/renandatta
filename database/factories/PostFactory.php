@@ -7,22 +7,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Post::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
-            //
+            'category_id' => $category_id ?? null,
+            'name' => $this->faker->catchPhrase,
+            'date' => $this->faker->dateTimeThisYear->format('Y-m-d'),
+            'image' => $this->faker->image(storage_path('app/posts'), 800, 600),
+            'tags' => join(',', explode(' ', $this->faker->sentence(rand(3, 8)))),
+            'content' => $this->faker->paragraph(rand(10, 20))
         ];
     }
 }
