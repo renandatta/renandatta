@@ -14,14 +14,44 @@ class FeatureSeeder extends Seeder
      */
     public function run()
     {
-        Feature::insert(array(
-            ['name' => 'Dashboard', 'url' => 'admin', 'icon' => 'mdi mdi-view-dashboard mr-2'],
-            ['name' => 'Settings', 'url' => '#', 'icon' => 'mdi mdi-tools mr-2', 'childrens' => array(
-                ['name' => 'Features', 'url' => 'admin.features'],
-                ['name' => 'User', 'url' => 'admin.users'],
-            )],
-            ['name' => 'Categories', 'url' => 'admin.categories', 'icon' => 'mdi mdi-folder-zip mr-2'],
-            ['name' => 'Posts', 'url' => 'admin.posts', 'icon' => 'mdi mdi-newspaper mr-2'],
-        ));
+        Feature::insert([
+            [
+                'name' => 'Dashboard',
+                'url' => 'admin',
+                'icon' => 'mdi mdi-view-dashboard mr-2',
+                'kode' => '01',
+                'parent_kode' => '#',
+            ], [
+                'name' => 'Settings',
+                'url' => '#',
+                'icon' => 'mdi mdi-tools mr-2',
+                'kode' => '02',
+                'parent_kode' => '#',
+            ], [
+                'name' => 'Features',
+                'url' => 'features',
+                'icon' => null,
+                'kode' => '02.01',
+                'parent_kode' => '02',
+            ], [
+                'name' => 'Users',
+                'url' => 'users',
+                'icon' => null,
+                'kode' => '02.02',
+                'parent_kode' => '02',
+            ], [
+                'name' => 'Categories',
+                'url' => 'admin.categories',
+                'icon' => 'mdi mdi-folder-zip mr-2',
+                'kode' => '03',
+                'parent_kode' => '#',
+            ], [
+                'name' => 'Posts',
+                'url' => 'admin.posts',
+                'icon' => 'mdi mdi-newspaper mr-2',
+                'kode' => '04',
+                'parent_kode' => '#',
+            ],
+        ]);
     }
 }
