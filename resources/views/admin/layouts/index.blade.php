@@ -11,7 +11,6 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
-
 </head>
 <body data-topbar="dark" data-layout="horizontal">
 <div id="layout-wrapper">
@@ -66,28 +65,7 @@
 
     <div class="topnav">
         <div class="container-fluid">
-            <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-
-                <div class="collapse navbar-collapse" id="topnav-menu-content">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="mdi mdi-tools mr-2"></i> Dashboard
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-customize mr-2"></i>Apps <div class="arrow-down"></div>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-pages">
-                                <a href="#" class="dropdown-item">Calendar</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            @include('admin.layouts._navbar')
         </div>
     </div>
 
@@ -95,19 +73,7 @@
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Dashboard</h4>
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item active">Welcome to Dashboard</li>
-                                </ol>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
             </div>
         </div>
 
@@ -131,7 +97,6 @@
 <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 </html>
