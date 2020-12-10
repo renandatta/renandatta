@@ -1,0 +1,14 @@
+/* Custom Theme */
+body[data-topbar=dark] #page-topbar {
+    background-color: #282e3f;
+}
+#page-topbar {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.navbar-header {
+    height: 60px;
+}
+.topnav {
+    margin-top: 60px;
+}
