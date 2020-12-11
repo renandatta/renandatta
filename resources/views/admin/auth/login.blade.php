@@ -42,7 +42,7 @@
                             </a>
                         </div>
                         <div class="p-2">
-                            <form class="form-horizontal" action="{{ route('admin.auth.login.proses') }}">
+                            <form class="form-horizontal" action="{{ route('admin.auth.login.proses') }}" method="post">
                                 @csrf
                                 <x-form-group id="email" caption="Email">
                                     <x-input name="email" type="email" caption="Enter email" autofocus />

@@ -16,7 +16,7 @@ class AuthRepository
 
     public function login($email, $password, $remember = false): array
     {
-        $user = $this->user->where("email", $email)->firt();
+        $user = $this->user->where("email", $email)->first();
         if (empty($user)) return array("errors" => "Email not found");
         if (!Hash::check($password, $user->password)) return array("errors" => "Password doens't match");
         Auth::login($user, $remember);
