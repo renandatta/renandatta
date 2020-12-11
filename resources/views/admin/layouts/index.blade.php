@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{{ env('APP_NAME') }}</title>
+    <title>@yield('title'){{ env('APP_NAME') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="-" name="description" />
     <meta content="-" name="author" />
@@ -11,6 +11,7 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    @stack('styles')
 </head>
 <body data-topbar="dark" data-layout="horizontal">
 <div id="layout-wrapper">
@@ -98,5 +99,25 @@
 <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script>
+    let getFormData = ($form) => {
+        let unindexed_array = $form.serializeArray();
+        let indexed_array = {};
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+    let displayErrors = (target_id, errors) => {
+        let $target = $('#' + target_id);
+        let $content = $('#' + target_id + '_content');
+        $content.html('');
+        $.each(errors, (i, value) => {
+            $content.append('<li>'+ value +'</li>');
+        });
+        $target.show();
+    }
+</script>
+@stack('scripts')
 </body>
 </html>

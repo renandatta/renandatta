@@ -12,3 +12,18 @@ body[data-topbar=dark] #page-topbar {
 .topnav {
     margin-top: 60px;
 }
+.bg-main {
+    background-color: #2a3042;
+}
+.alert li {
+    list-style: none;
+}
+.vertical-middle {
+    vertical-align: middle!important;
+}
+
+/* Bootstrap */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}

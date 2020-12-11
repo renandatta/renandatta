@@ -4,5 +4,6 @@
     name="{{ $name }}"
     id="{{ $prefix.$name }}"
     placeholder="{{ $caption }}"
+    value="{{ $value }}"
     {{ $attributes }}
 />

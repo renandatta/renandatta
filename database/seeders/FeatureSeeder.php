@@ -29,13 +29,13 @@ class FeatureSeeder extends Seeder
                 'parent_kode' => '#',
             ], [
                 'name' => 'Features',
-                'url' => 'features',
+                'url' => 'admin.features',
                 'icon' => null,
                 'kode' => '02.01',
                 'parent_kode' => '02',
             ], [
                 'name' => 'Users',
-                'url' => 'users',
+                'url' => 'admin.users',
                 'icon' => null,
                 'kode' => '02.02',
                 'parent_kode' => '02',

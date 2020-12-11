@@ -6,13 +6,14 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
-    public $class, $prefix, $name, $caption, $type;
+    public $class, $prefix, $name, $caption, $type, $value;
     public function __construct(
         $class = null,
         $prefix = null,
         $name = null,
         $caption = null,
-        $type = 'text'
+        $type = 'text',
+        $value = ''
     )
     {
         $this->class = $class;
@@ -20,6 +21,7 @@ class Input extends Component
         $this->name = $name;
         $this->caption = $caption;
         $this->type = $type;
+        $this->value = $value;
     }
 
     public function render()

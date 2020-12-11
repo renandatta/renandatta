@@ -10,7 +10,7 @@ class Feature extends Model
         'name',
         'url',
         'icon',
-        'kode',
-        'parent_kode'
+        'code',
+        'parent_code'
     ];
 }

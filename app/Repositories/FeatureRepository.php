@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 
-class FeatureRepository
+class FeatureRepository extends Repository
 {
     protected $feature;
     public function __construct(Feature $feature)
@@ -50,21 +50,26 @@ class FeatureRepository
     public function delete($id)
     {
         $feature = $this->feature->find($id);
-        $feature->delete();
+        if (!empty($feature)) $feature->delete();
         return $feature;
     }
 
     protected $skip = array();
-    public function nested_data($data, $parent_kode = '#')
+    public function nested_data($data, $parent_code = '#')
     {
         $result = array();
         foreach ($data as $item) {
-            if (!in_array($item->id, $this->skip) && $item->parent_kode == $parent_kode) {
+            if (!in_array($item->id, $this->skip) && $item->parent_code == $parent_code) {
                 array_push($this->skip, $item->id);
-                $item->children = $this->nested_data($data, $item->kode);
+                $item->children = $this->nested_data($data, $item->code);
                 array_push($result, $item);
             }
         }
         return $result;
+    }
+
+    public function code($parent_code)
+    {
+        return $this->auto_code($this->feature, $parent_code);
     }
 }

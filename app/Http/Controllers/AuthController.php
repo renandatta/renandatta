@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthRequest;
 use App\Repositories\AuthRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -28,8 +28,9 @@ class AuthController extends Controller
         return redirect()->route(self::REDIRECT);
     }
 
-    public function proses_login(AuthRequest $request)
+    public function proses_login(Request $request)
     {
+        $request->validate(['email' => 'required', 'password' => 'required']);
         $auth = $this->auth->login(
             $request->input('email'),
             $request->input('password'),
