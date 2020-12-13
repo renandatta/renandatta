@@ -17,10 +17,10 @@
             <td>
                 <button class="btn btn-sm btn-success float-right px-3" onclick="add_new()">add new</button>
                 <button class="btn btn-sm btn-info float-right px-3 mr-3" onclick="toggle_search()">search</button>
-                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database mr-2"></i> Features</h5>
-                <div id="feature_table"></div>
+                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database mr-2"></i> Categories</h5>
+                <div id="category_table"></div>
             </td>
-            <td class="bg-light" id="feature_search">
+            <td class="bg-light" id="category_search">
                 <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database-search mr-2"></i> Search</h5>
                 <form id="search_form">
                     @csrf
@@ -32,7 +32,7 @@
                     </div>
                 </form>
             </td>
-            <td class="bg-light" id="feature_info" width="350px">
+            <td class="bg-light" id="category_info" width="350px">
             </td>
         </tr>
     </table>
@@ -41,57 +41,62 @@
 @push('scripts')
     <script>
         // manage ui
-        $feature_data = $('#feature_data');
-        $feature_search = $('#feature_search');
-        $feature_search.hide();
+        $category_data = $('#category_data');
+        $category_search = $('#category_search');
+        $category_search.hide();
         toggle_search = () => {
-            $feature_search.toggle();
+            $category_search.toggle();
         }
 
         // search
         let selected_page = 1;
         $search_form = $('#search_form');
-        $feature_table = $('#feature_table');
-        search_feature = () => {
+        $category_table = $('#category_table');
+        search_category = (page = 1) => {
+            if (page.toString() === '+1') selected_page++;
+            else if (page.toString() === '-1') selected_page--;
+            else selected_page = page;
+
             let data = getFormData($search_form);
-            $.post("{{ route('admin.features.search') }}", data, (result) => {
-                $feature_table.html(result);
+            data.paginate = 10;
+            $.post("{{ route('admin.categories.search') }}?page=" + selected_page, data, (result) => {
+                $category_table.html(result);
             }).fail((xhr) => {
-                $feature_table.html(xhr.responseText);
+                $category_table.html(xhr.responseText);
             });
         }
-        search_feature();
+        search_category();
         $search_form.submit((e) => {
             e.preventDefault();
-            search_feature();
+            search_category();
         })
 
         // crud
-        $feature_info = $('#feature_info');
-        $feature_info.hide();
+        $category_info = $('#category_info');
+        $category_info.hide();
         add_new = () => {
             let data = {_token: '{{ csrf_token() }}'};
-            $.post("{{ route('admin.features.info') }}", data, (result) => {
-                $feature_info.html(result);
-                $feature_info.show();
+            $.post("{{ route('admin.categories.info') }}", data, (result) => {
+                $category_info.html(result);
+                $category_info.show();
             }).fail((xhr) => {
-                $feature_info.html(xhr.responseText);
-                $feature_info.show();
+                $category_info.html(xhr.responseText);
+                $category_info.show();
             });
         }
-        edit_feature = (id) => {
+        edit_category = (id) => {
             let data = {_token: '{{ csrf_token() }}', id};
-            $.post("{{ route('admin.features.info') }}", data, (result) => {
-                $feature_info.html(result);
-                $feature_info.show();
+            $.post("{{ route('admin.categories.info') }}", data, (result) => {
+                $category_info.html(result);
+                $category_info.show();
             }).fail((xhr) => {
-                $feature_info.html(xhr.responseText);
-                $feature_info.show();
+                $category_info.html(xhr.responseText);
+                $category_info.show();
             });
         }
         clear_form = () => {
-            $feature_info.html('');
-            $feature_info.hide();
+            $category_info.html('');
+            $category_info.hide();
         }
     </script>
 @endpush
