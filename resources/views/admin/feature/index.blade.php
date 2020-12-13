@@ -24,8 +24,8 @@
                 <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database-search mr-2"></i> Search</h5>
                 <form id="search_form">
                     @csrf
-                    <x-form-group id="name" caption="Name">
-                        <x-input name="name" caption="Search by name" />
+                    <x-form-group id="search_name" caption="Name">
+                        <x-input prefix="search_" name="name" caption="Search by name" />
                     </x-form-group>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Search</button>
@@ -58,7 +58,7 @@
             else selected_page = page;
 
             let data = getFormData($search_form);
-            $.post("{{ route('admin.features.search') }}", data, (result) => {
+            $.post("{{ route('admin.features.search') }}?page=" + selected_page, data, (result) => {
                 $feature_table.html(result);
             }).fail((xhr) => {
                 $feature_table.html(xhr.responseText);

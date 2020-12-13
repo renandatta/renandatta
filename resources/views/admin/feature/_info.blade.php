@@ -6,7 +6,7 @@
 <form id="feature_form" method="post">
     @csrf
     <x-alert type="error" id="alert_feature" />
-    <input type="hidden" name="id" value="{{ $feature->id ?? '' }}"">
+    <input type="hidden" name="id" value="{{ $feature->id ?? '' }}">
     <input type="hidden" name="code" value="{{ $code }}">
     <input type="hidden" name="parent_code" value="{{ $parent_code }}">
     <x-form-group id="name" caption="Name">
@@ -20,7 +20,7 @@
     </x-form-group>
     <div class="text-right">
         @if(!empty($feature))
-            <button type="button" class="btn btn-danger px-3 float-left" onclick="delete_feature({{ $feature->id }})">Delete</button>
+            <button type="button" class="btn btn-danger px-3 float-left" onclick="confirm_delete({{ $feature->id }})">Delete</button>
         @endif
         <button type="button" class="btn btn-default px-3" onclick="clear_form()">Cancel</button>
         <button type="submit" class="btn btn-primary px-3">Save</button>
@@ -53,6 +53,20 @@
             }
         });
     });
+    confirm_delete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            console.log(result);
+            if (result.value === true) {
+                delete_feature(id);
+            }
+        })
+    }
     delete_feature = (id) => {
         let data = {_token: '{{ csrf_token() }}', id};
         $.post("{{ route('admin.features.delete') }}", data, () => {

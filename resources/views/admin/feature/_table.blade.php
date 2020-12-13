@@ -2,6 +2,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th width="30px">No</th>
             <th>Name</th>
             <th>Url</th>
             <th>Icon</th>
@@ -9,9 +10,18 @@
         </tr>
         </thead>
         <tbody>
+        @if(method_exists($features, 'links'))
+            @php
+                $features = $features ?? null;
+                $no = (($features->currentPage()-1) * $features->perPage()) + 1
+            @endphp
+        @else
+            @php($no = 1)
+        @endif
         @foreach($features as $feature)
             <tr>
-                <td>{{ $feature->name }}</td>
+                <td>{{ $no++ }}</td>
+                <td>@if($feature->parent_code != '#') &nbsp; &nbsp; @endif{{ $feature->name }}</td>
                 <td>{{ $feature->url }}</td>
                 <td><i class="{{ $feature->icon }}"></i></td>
                 <td class="p-0 text-center vertical-middle" width="30px">
@@ -29,3 +39,6 @@
         </tbody>
     </table>
 </div>
+@if(method_exists($features, 'links'))
+    {{ $features->links('vendor.pagination.custom', ['function' => 'search_feature']) }}
+@endif
