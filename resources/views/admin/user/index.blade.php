@@ -17,7 +17,7 @@
             <td>
                 <button class="btn btn-sm btn-success float-right px-3" onclick="add_new()">add new</button>
                 <button class="btn btn-sm btn-info float-right px-3 mr-3" onclick="toggle_search()">search</button>
-                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database mr-2"></i> Features</h5>
+                <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-database mr-2"></i> Users</h5>
                 <div id="user_table"></div>
             </td>
             <td class="bg-light" id="user_search">
