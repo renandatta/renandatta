@@ -50,14 +50,14 @@
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/user.png') }}"
-                             alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ml-1">Henry</span>
+                             alt="Avatar">
+                        <span class="d-none d-xl-inline-block ml-1">{{ Auth::user()->name }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="{{ route('admin.auth.logout') }}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
 
