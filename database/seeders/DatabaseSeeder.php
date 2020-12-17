@@ -12,9 +12,5 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(FeatureSeeder::class);
         $this->call(UserSeeder::class);
-        $categories = Category::factory(15)->create();
-        foreach ($categories as $category) {
-            Post::factory(5)->create(['category_id' => $category->id]);
-        }
     }
 }

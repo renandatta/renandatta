@@ -16,7 +16,7 @@ class AdminMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        $features = $this->feature->search(new Request(['parent_kode' => '#']));
+        $features = $this->feature->search(new Request(['parent_code' => '#']));
         $features = $this->feature->nested_data($features);
         view()->share(['features' => $features]);
         return $next($request);
