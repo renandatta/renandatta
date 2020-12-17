@@ -4,16 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Textarea extends Component
+class Select extends Component
 {
-    public $class, $prefix, $name, $caption, $value, $rows;
+    public $class, $prefix, $name, $caption, $value, $options, $default;
     public function __construct(
         $class = null,
         $prefix = null,
         $name = null,
-        $caption = null,
+        $caption = '-Pilih-',
         $value = '',
-        $rows = 3
+        $options = [],
+        $default = ''
     )
     {
         $this->class = $class;
@@ -21,11 +22,12 @@ class Textarea extends Component
         $this->name = $name;
         $this->caption = $caption;
         $this->value = $value;
-        $this->rows = $rows;
+        $this->options = $options;
+        $this->default = $default;
     }
 
     public function render()
     {
-        return view('components.textarea');
+        return view('components.select');
     }
 }

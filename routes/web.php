@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,14 @@ Route::prefix('admin')->group(function () {
         Route::post('info', [CategoryController::class, 'info'])->name('admin.categories.info');
         Route::post('save', [CategoryController::class, 'save'])->name('admin.categories.save');
         Route::post('delete', [CategoryController::class, 'delete'])->name('admin.categories.delete');
+    });
+
+    Route::prefix('posts')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('admin.posts');
+        Route::post('search', [PostController::class, 'search'])->name('admin.posts.search');
+        Route::post('info', [PostController::class, 'info'])->name('admin.posts.info');
+        Route::post('save', [PostController::class, 'save'])->name('admin.posts.save');
+        Route::post('delete', [PostController::class, 'delete'])->name('admin.posts.delete');
     });
 });
 

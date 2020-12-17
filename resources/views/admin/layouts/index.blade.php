@@ -7,6 +7,9 @@
     <meta content="-" name="description" />
     <meta content="-" name="author" />
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/libs/summernote/summernote-bs4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap-dark.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -99,8 +102,21 @@
 <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/libs/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script>
+    let init_form_element = () => {
+        $(".select2").select2();
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true
+        });
+        $(".summernote").summernote({
+            height: 300,
+        });
+    }
     let getFormData = ($form) => {
         let unindexed_array = $form.serializeArray();
         let indexed_array = {};
