@@ -5,7 +5,7 @@
             <th width="30px">No</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Action</th>
+            <th width="30px">Action</th>
         </tr>
         </thead>
         <tbody>

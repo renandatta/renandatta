@@ -5,8 +5,23 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+
+Route::get('assets/{folder}/{filename}', function ($folder,$filename){
+    $path = storage_path('app/' . $folder . '/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+});
 
 Route::prefix('admin')->group(function () {
 
@@ -15,6 +30,14 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AuthController::class, 'proses_login'])->name('admin.auth.login.proses');
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+
+    Route::prefix('profiles')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('admin.profiles');
+        Route::post('search', [ProfileController::class, 'search'])->name('admin.profiles.search');
+        Route::post('info', [ProfileController::class, 'info'])->name('admin.profiles.info');
+        Route::post('save', [ProfileController::class, 'save'])->name('admin.profiles.save');
+        Route::post('delete', [ProfileController::class, 'delete'])->name('admin.profiles.delete');
+    });
 
     Route::prefix('features')->group(function () {
         Route::get('/', [FeatureController::class, 'index'])->name('admin.features');

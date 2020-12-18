@@ -29,7 +29,7 @@ class FeatureSeeder extends Seeder
                 'parent_code' => '#',
             ], [
                 'name' => 'Profile',
-                'url' => 'admin.profile',
+                'url' => 'admin.profiles',
                 'icon' => null,
                 'code' => '02.01',
                 'parent_code' => '02',
