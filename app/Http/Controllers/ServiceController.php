@@ -40,7 +40,6 @@ class ServiceController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'file' => 'required',
         ]);
 
         $filename = $this->save_file($request);
