@@ -24,7 +24,7 @@
                 @if($profile->type == 'text')
                     <td>{{ $profile->content }}
                 @else
-                    <td class="p-0 vertical-middle"><img src="{{ asset("assets/$profile->content") }}" alt="" class="img-fluid" style="height: 35px;"></td>
+                    <td class="py-0 vertical-middle"><img src="{{ asset("assets/$profile->content") }}" alt="" class="img-fluid" style="height: 35px;"></td>
                 @endif
                 <td class="p-0 text-center vertical-middle" width="30px">
                     <div class="btn-group dropleft">
