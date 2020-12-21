@@ -3,10 +3,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Renandatta</title>
+    <title>{{ $app_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets2/images/favicon.png') }}">
+    <meta name="description" content="{{ $app_description }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset("assets/$favicon") }}">
 
     <link rel="stylesheet" href="{{ asset('assets2/css/bootstrap.min.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('assets2/css/all.min.css') }}" type="text/css" media="all">
@@ -49,22 +49,15 @@
         <div class="menu-icon d-inline-flex mr-4">
             <button><span></span></button>
         </div>
-        <div class="site-logo">
-            <a href="{{ route('/') }}">
-                <img src="{{ asset('assets2/images/logo.svg') }}" alt="" />
-            </a>
-        </div>
     </div>
 </header>
 
 <header class="desktop-header-1 d-flex align-items-start flex-column">
-
     <div class="site-logo">
         <a href="{{ route('/') }}">
-            <img src="{{ asset('assets2/images/logo.svg') }}" alt="" />
+            <img src="{{ asset("assets/$logo") }}" alt="" />
         </a>
     </div>
-
     <nav>
         <ul class="vertical-menu scrollspy">
             <li class="active"><a href="#home"><i class="icon-home"></i>Home</a></li>
@@ -74,28 +67,24 @@
             <li><a href="#contact"><i class="icon-bubbles"></i>Contact</a></li>
         </ul>
     </nav>
-
     <div class="footer">
-        <span class="copyright">© 2020 Renandatta.</span>
+        <span class="copyright">© 2020 {{ $copyright }}.</span>
     </div>
-
 </header>
+
 
 <main class="content">
     <section id="home" class="home d-flex align-items-center">
         <div class="container">
             <div class="intro">
-                <img src="{{ asset('assets2/images/avatar-1.svg') }}" alt="" class="mb-4" />
-
-                <h1 class="mb-2 mt-0">Renandatta</h1>
-                <span>I'm a <span class="text-rotating">System Analyst, Fullstack developer, Cat lover</span></span>
+                <img src="{{ asset("assets/$foto") }}" alt="" class="mb-4 img-fluid shadow-sm" style="height: 180px;border-radius: 10px;"  />
+                <h1 class="mb-2 mt-0">{{ $app_name }}</h1>
+                <span>I'm a <span class="text-rotating">{{ $app_description }}</span></span>
 
                 <ul class="social-icons light list-inline mb-0 mt-4">
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-behance"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ $instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ $twitter }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ $github }}" target="_blank"><i class="fab fa-github"></i></a></li>
                 </ul>
 
                 <div class="mt-4">
@@ -104,7 +93,7 @@
             </div>
 
             <div class="scroll-down">
-                <a href="#about" class="mouse-wrapper">
+                <a href="#services" class="mouse-wrapper">
                     <span>Scroll Down</span>
                     <span class="mouse">
 						<span class="wheel"></span>
@@ -134,31 +123,18 @@
             <h2 class="section-title wow fadeInUp">Services</h2>
             <div class="spacer" data-height="60"></div>
             <div class="row">
+                @foreach($services as $service)
                 <div class="col-md-4">
-                    <div class="service-box rounded data-background padding-30 text-center text-light shadow-blue" data-color="#6C6CE5">
-                        <img src="{{ asset('assets2/images/service-1.svg') }}" alt="" />
-                        <h3 class="mb-3 mt-0">Web Application</h3>
-                        <p class="mb-0">Get business into next level with web application, you can monitor your company data from anywhere</p>
+                    <div class="service-box rounded data-background padding-30 text-center text-light shadow-blue" data-color="{{ $service->color }}">
+                        <img src="{{ asset("assets/$service->image") }}" alt="" />
+                        <h3 class="mb-3 mt-0">{{ $service->name }}</h3>
+                        <p class="mb-0">{{ $service->description }}</p>
                     </div>
                     <div class="spacer d-md-none d-lg-none" data-height="30"></div>
                 </div>
+                @endforeach
 
-                <div class="col-md-4">
-                    <div class="service-box rounded data-background padding-30 text-center shadow-yellow" data-color="#F9D74C">
-                        <img src="{{ asset('assets2/images/service-2.svg') }}" alt="" />
-                        <h3 class="mb-3 mt-0">Android Application</h3>
-                        <p class="mb-0">Too busy looking at laptop or desktop? You can access your company data from your android device.</p>
-                    </div>
-                    <div class="spacer d-md-none d-lg-none" data-height="30"></div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="service-box rounded data-background padding-30 text-center text-light shadow-pink" data-color="#F97B8B">
-                        <img src="{{ asset('assets2/images/service-3.svg') }}" alt="" />
-                        <h3 class="mb-3 mt-0">Content Editor</h3>
-                        <p class="mb-0">Boost Up your company website or social media with quality content to attract more consumer.</p>
-                    </div>
-                </div>
             </div>
             <div class="mt-5 text-center">
                 <p class="mb-0">Looking for a custom job? <a href="#contact">Click here</a> to contact me!</p>
