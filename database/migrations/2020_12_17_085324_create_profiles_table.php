@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->timestamps();
         });
     }
