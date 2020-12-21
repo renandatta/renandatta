@@ -7,6 +7,7 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -73,11 +74,13 @@ Route::prefix('admin')->group(function () {
         Route::post('save', [PostController::class, 'save'])->name('admin.posts.save');
         Route::post('delete', [PostController::class, 'delete'])->name('admin.posts.delete');
     });
-});
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-//
-//Route::view('layout', 'admin.layouts.index');
+    Route::prefix('services')->group(function () {
+        Route::get('/', [ServiceController::class, 'index'])->name('admin.services');
+        Route::post('search', [ServiceController::class, 'search'])->name('admin.services.search');
+        Route::post('info', [ServiceController::class, 'info'])->name('admin.services.info');
+        Route::post('save', [ServiceController::class, 'save'])->name('admin.services.save');
+        Route::post('delete', [ServiceController::class, 'delete'])->name('admin.services.delete');
+    });
+});
 
