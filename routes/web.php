@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,8 @@ Route::get('assets/{folder}/{filename}', function ($folder,$filename){
     $response->header("Content-Type", $type);
     return $response;
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('/');
 
 Route::prefix('admin')->group(function () {
 
@@ -72,9 +75,9 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::view('layout', 'admin.layouts.index');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::view('layout', 'admin.layouts.index');
 
