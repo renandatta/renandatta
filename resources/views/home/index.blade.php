@@ -148,87 +148,50 @@
             <div class="spacer" data-height="60"></div>
             <ul class="portfolio-filter list-inline wow fadeInUp">
                 <li class="current list-inline-item" data-filter="*">Everything</li>
-                <li class="list-inline-item" data-filter=".creative">Creative</li>
-                <li class="list-inline-item" data-filter=".art">Art</li>
-                <li class="list-inline-item" data-filter=".design">Design</li>
-                <li class="list-inline-item" data-filter=".branding">Branding</li>
+                @foreach($tags as $tag)
+                <li class="list-inline-item" data-filter="{{ "." . strtolower($tag) }}">{{ $tag }}</li>
+                @endforeach
             </ul>
-            <!-- portfolio filter (mobile) -->
             <div class="pf-filter-wrapper">
                 <select class="portfolio-filter-mobile">
                     <option value="*">Everything</option>
-                    <option value=".creative">Creative</option>
-                    <option value=".art">Art</option>
-                    <option value=".design">Design</option>
-                    <option value=".branding">Branding</option>
+                    @foreach($tags as $tag)
+                    <option value="{{ "." . strtolower($tag) }}">{{ $tag }}</option>
+                    @endforeach
                 </select>
             </div>
 
-            <!-- portolio wrapper -->
             <div class="row portfolio-wrapper">
-
-                <div class="col-md-4 col-sm-6 grid-item creative design">
-                    <a href="#small-dialog" class="work-content">
-                        <div class="portfolio-item rounded shadow-dark">
-                            <div class="details">
-                                <span class="term">Creative</span>
-                                <h4 class="title">Guest App Walkthrough Screens</h4>
-                                <span class="more-button"><i class="icon-options"></i></span>
+                @foreach($portofolio as $item)
+                    <div class="col-md-4 col-sm-6 grid-item {{ strtolower(join(' ', explode(',', $item->tags))) }}">
+                        <a href="#small-dialog" class="work-content">
+                            <div class="portfolio-item rounded shadow-dark">
+                                <div class="details">
+                                    <span class="term">{{ explode(',', $item->tags)[0] }}</span>
+                                    <h4 class="title">{{ $item->name }}</h4>
+                                    <span class="more-button"><i class="icon-options"></i></span>
+                                </div>
+                                <div class="thumb">
+                                    <img src="{{ asset("assets/$item->image") }}" alt="Portfolio-title" />
+                                    <div class="mask"></div>
+                                </div>
                             </div>
-                            <div class="thumb">
-                                <img src="{{ asset('assets2/images/works/2.svg') }}" alt="Portfolio-title" />
-                                <div class="mask"></div>
-                            </div>
+                        </a>
+                        <div id="small-dialog" class="white-popup zoom-anim-dialog mfp-hide">
+                            <img src="{{ asset("assets/$item->image") }}" alt="Title" />
+                            <h2>{{ $item->name }}</h2>
+                            {!! $item->content !!}
                         </div>
-                    </a>
-                    <div id="small-dialog" class="white-popup zoom-anim-dialog mfp-hide">
-                        <img src="{{ asset('assets2/images/single-work.svg') }}" alt="Title" />
-                        <h2>Guest App Walkthrough Screens</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit nibh in massa semper rutrum. In rhoncus eleifend mi id tempus.</p>
-                        <p>Donec consectetur, libero at pretium euismod, nisl felis lobortis urna, id tristique nisl lectus eget ligula.</p>
-                        <a href="#" class="btn btn-default">View on Dribbble</a>
                     </div>
-                </div>
-
+                @endforeach
             </div>
-
-            <div class="load-more text-center mt-4">
-                <a href="javascript:" class="btn btn-default"><i class="fas fa-spinner"></i> Load more</a>
-            </div>
-
         </div>
 
     </section>
 
     <section id="testimonials">
         <div class="container">
-            <h2 class="section-title wow fadeInUp">Clients & Reviews</h2>
-            <div class="spacer" data-height="60"></div>
-            <div class="testimonials-wrapper">
-                <div class="testimonial-item text-center mx-auto">
-                    <div class="thumb mb-3 mx-auto">
-                        <img src="{{ asset('assets2/images/avatar-3.svg') }}" alt="customer-name" />
-                    </div>
-                    <h4 class="mt-3 mb-0">John Doe</h4>
-                    <span class="subtitle">Product designer at Dribbble</span>
-                    <div class="bg-dark padding-30 shadow-light rounded triangle-top position-relative mt-4">
-                        <p class="mb-0">I enjoy working with the theme and learn so much. You guys make the process fun and interesting. Good luck! 👍</p>
-                    </div>
-                </div>
-
-                <!-- testimonial item -->
-                <div class="testimonial-item text-center mx-auto">
-                    <div class="thumb mb-3 mx-auto">
-                        <img src="{{ asset('assets2/images/avatar-1.svg') }}" alt="customer-name" />
-                    </div>
-                    <h4 class="mt-3 mb-0">John Doe</h4>
-                    <span class="subtitle">Product designer at Dribbble</span>
-                    <div class="bg-dark padding-30 shadow-light rounded triangle-top position-relative mt-4">
-                        <p class="mb-0">I enjoy working with the theme and learn so much. You guys make the process fun and interesting. Good luck! 🔥</p>
-                    </div>
-                </div>
-
-            </div>
+            <h2 class="section-title wow fadeInUp">Clients</h2>
 
             <div class="row">
                 <div class="col-md-3 col-6">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -81,6 +82,14 @@ Route::prefix('admin')->group(function () {
         Route::post('info', [ServiceController::class, 'info'])->name('admin.services.info');
         Route::post('save', [ServiceController::class, 'save'])->name('admin.services.save');
         Route::post('delete', [ServiceController::class, 'delete'])->name('admin.services.delete');
+    });
+
+    Route::prefix('clients')->group(function () {
+        Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
+        Route::post('search', [ClientController::class, 'search'])->name('admin.clients.search');
+        Route::post('info', [ClientController::class, 'info'])->name('admin.clients.info');
+        Route::post('save', [ClientController::class, 'save'])->name('admin.clients.save');
+        Route::post('delete', [ClientController::class, 'delete'])->name('admin.clients.delete');
     });
 });
 
