@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('date');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('tags');
             $table->longText('content');
             $table->timestamps();

@@ -7,23 +7,36 @@
     @csrf
     <x-alert type="error" id="alert_post" />
     <input type="hidden" name="id" value="{{ $post->id ?? '' }}">
-    <x-form-group id="name" caption="Name">
-        <x-input name="name" caption="Enter name" :value="$post->name ?? ''" />
-    </x-form-group>
     <div class="row">
-        <div class="col-md-2">
-            <x-form-group id="date" caption="Date Published">
-                <x-input name="date" caption="Enter date" :value="format_date($post->date ?? '')" class="datepicker" />
+        <div class="col-md-8">
+            <x-form-group id="name" caption="Name">
+                <x-input name="name" caption="Enter name" :value="$post->name ?? ''" />
             </x-form-group>
+            <div class="row">
+                <div class="col-md-3">
+                    <x-form-group id="date" caption="Date Published">
+                        <x-input name="date" caption="Enter date" :value="format_date($post->date ?? date('d-m-Y'))" class="datepicker" />
+                    </x-form-group>
+                </div>
+                <div class="col-md-4">
+                    <x-form-group id="search_category_id" caption="Category">
+                        <x-select prefix="search_" name="category_id" :options="$categories" :value="$post->category_id ?? ''" class="select2" />
+                    </x-form-group>
+                </div>
+                <div class="col-md-5">
+                    <x-form-group id="tags" caption="Tags">
+                        <x-input name="tags" caption="Enter tags" :value="$post->tags ?? ''" />
+                    </x-form-group>
+                </div>
+            </div>
         </div>
-        <div class="col-md-5">
-            <x-form-group id="search_category_id" caption="Category">
-                <x-select prefix="search_" name="category_id" :options="$categories" :value="$post->category_id ?? ''" class="select2" />
-            </x-form-group>
-        </div>
-        <div class="col-md-5">
-            <x-form-group id="tags" caption="Tags">
-                <x-input name="tags" caption="Enter tags" :value="$post->tags ?? ''" />
+        <div class="col-md-4">
+            <x-form-group id="file" caption="Image">
+                <x-input
+                    type="file" name="file" class="dropify" data-height="100"
+                    data-allowed-file-extensions="png jpg jpeg" accept="image/jpeg, image/png"
+                    :data-default-file="(!empty($post)) ? asset('assets/'.$post->image) : ''"
+                />
             </x-form-group>
         </div>
     </div>

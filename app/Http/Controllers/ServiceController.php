@@ -44,7 +44,6 @@ class ServiceController extends Controller
 
         $filename = $this->save_file($request);
         if ($filename != '') $request->merge(['image' => $filename]);
-        else $request = new Request($request->except('image'));
 
         return $this->service->save($request);
     }

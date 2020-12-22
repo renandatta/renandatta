@@ -7,6 +7,7 @@
             <th>Category</th>
             <th>Tags</th>
             <th>Date</th>
+            <th>Image</th>
             <th width="30px">Action</th>
         </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ $post->category->name }}</td>
                 <td>{{ $post->tags }}</td>
                 <td class="text-nowrap">{{ format_date($post->date) }}</td>
+                <td class="py-0 vertical-middle"><img src="{{ asset("assets/$post->image") }}" alt="" class="img-fluid" style="height: 35px;"></td>
                 <td class="p-0 text-center vertical-middle" width="30px">
                     <div class="btn-group dropleft">
                         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle py-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

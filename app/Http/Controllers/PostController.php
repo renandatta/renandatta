@@ -44,13 +44,11 @@ class PostController extends Controller
             'category_id' => 'required',
             'name' => 'required',
             'content' => 'required',
-            'image' => 'required',
             'tags' => 'required',
         ]);
 
-        $filename = $this->save_file($request, 'image');
+        $filename = $this->save_file($request);
         if ($filename != '') $request->merge(['image' => $filename]);
-        else $request = new Request($request->except('image'));
 
         return $this->post->save($request);
     }

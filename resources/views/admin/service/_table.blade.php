@@ -23,7 +23,7 @@
                 <td>{{ $no++ }}</td>
                 <td class="text-nowrap">{{ $service->name }}</td>
                 <td>{{ $service->description }}</td>
-                <td class="p-0 vertical-middle"><img src="{{ asset("assets/$service->image") }}" alt="" class="img-fluid" style="height: 35px;"></td>
+                <td class="py-0 vertical-middle"><img src="{{ asset("assets/$service->image") }}" alt="" class="img-fluid" style="height: 35px;"></td>
                 <td class="p-0 text-center vertical-middle" width="30px">
                     <div class="btn-group dropleft">
                         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle py-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
