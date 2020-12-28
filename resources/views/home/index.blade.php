@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{{ asset('assets2/css/animate.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('assets2/css/magnific-popup.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('assets2/css/style.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" type="text/css" />
+    <style>
+        .swal2-title {
+            color: #595959!important;
+        }
+    </style>
 </head>
 
 <body class="dark">
@@ -156,7 +162,7 @@
                 <select class="portfolio-filter-mobile">
                     <option value="*">Everything</option>
                     @foreach($tags as $tag)
-                    <option value="{{ "." . strtolower($tag) }}">{{ $tag }}</option>
+                        <option value="{{ "." . strtolower($tag) }}">{{ $tag }}</option>
                     @endforeach
                 </select>
             </div>
@@ -192,233 +198,92 @@
     <section id="testimonials">
         <div class="container">
             <h2 class="section-title wow fadeInUp">Clients</h2>
-
             <div class="row">
+                @foreach($clients as $client)
                 <div class="col-md-3 col-6">
-                    <!-- client item -->
                     <div class="client-item">
                         <div class="inner">
-                            <img src="images/client-1-light.svg" alt="client-name" />
+                            <img src="{{ asset("assets/$client->image") }}" alt="{{ $client->name }}" />
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-2-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-3-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-4-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-5-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-6-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-7-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <!-- client item -->
-                    <div class="client-item">
-                        <div class="inner">
-                            <img src="images/client-8-light.svg" alt="client-name" />
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-
         </div>
-
     </section>
 
-    <!-- section blog -->
     <section id="blog">
-
         <div class="container">
-
-            <!-- section title -->
             <h2 class="section-title wow fadeInUp">Latest Posts</h2>
-
             <div class="spacer" data-height="60"></div>
-
             <div class="row blog-wrapper">
-
+                @foreach($latest_posts as $post)
                 <div class="col-md-4">
-                    <!-- blog item -->
                     <div class="blog-item rounded bg-dark shadow-light wow fadeIn">
                         <div class="thumb">
                             <a href="#">
-                                <span class="category">Reviews</span>
-                            </a>
-                            <a href="#">
-                                <img src="images/blog/1.svg" alt="blog-title" />
+                                <img src="{{ asset("assets/$post->image") }}" alt="{{ $post->name }}" />
                             </a>
                         </div>
                         <div class="details">
-                            <h4 class="my-0 title"><a href="#">5 Best App Development Tool for Your Project</a></h4>
+                            <h4 class="my-0 title"><a href="#">{{ $post->name }}</a></h4>
                             <ul class="list-inline meta mb-0 mt-2">
-                                <li class="list-inline-item">09 February, 2020</li>
-                                <li class="list-inline-item">Bolby</li>
+                                <li class="list-inline-item">{{ fulldate($post->date) }}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <!-- blog item -->
-                    <div class="blog-item rounded bg-dark shadow-light wow fadeIn">
-                        <div class="thumb">
-                            <a href="#">
-                                <span class="category">Tutorial</span>
-                            </a>
-                            <a href="#">
-                                <img src="images/blog/2.svg" alt="blog-title" />
-                            </a>
-                        </div>
-                        <div class="details">
-                            <h4 class="my-0 title"><a href="#">Common Misconceptions About Payment</a></h4>
-                            <ul class="list-inline meta mb-0 mt-2">
-                                <li class="list-inline-item">07 February, 2020</li>
-                                <li class="list-inline-item">Bolby</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <!-- blog item -->
-                    <div class="blog-item rounded bg-dark shadow-light wow fadeIn">
-                        <div class="thumb">
-                            <a href="#">
-                                <span class="category">Business</span>
-                            </a>
-                            <a href="#">
-                                <img src="images/blog/3.svg" alt="blog-title" />
-                            </a>
-                        </div>
-                        <div class="details">
-                            <h4 class="my-0 title"><a href="#">3 Things To Know About Startup Business</a></h4>
-                            <ul class="list-inline meta mb-0 mt-2">
-                                <li class="list-inline-item">06 February, 2020</li>
-                                <li class="list-inline-item">Bolby</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
-
         </div>
-
     </section>
-
-    <!-- section contact -->
     <section id="contact">
-
         <div class="container">
-
-            <!-- section title -->
             <h2 class="section-title wow fadeInUp">Get In Touch</h2>
-
             <div class="spacer" data-height="60"></div>
-
             <div class="row">
-
                 <div class="col-md-4">
-                    <!-- contact info -->
                     <div class="contact-info">
                         <h3 class="wow fadeInUp">Let's talk about everything!</h3>
-                        <p class="wow fadeInUp">Don't like forms? Send me an <a href="mailto:name@example.com">email</a>. 👋</p>
+                        <p class="wow fadeInUp">Don't like forms? Send me an <a href="mailto:{{ $email }}">email</a>. 👋</p>
                     </div>
                 </div>
-
                 <div class="col-md-8">
-                    <!-- Contact Form -->
-                    <form id="contact-form" class="contact-form mt-6" method="post" action="https://jthemes.net/themes/html/bolby/demo/form/contact.php">
-
+                    <form id="contact-form" class="contact-form mt-6" method="post">
                         <div class="messages"></div>
-
                         <div class="row">
-                            <div class="column col-md-6">
-                                <!-- Name input -->
+                            <div class="column col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Your name" required="required" data-error="Name is required.">
-                                    <div class="help-block with-errors"></div>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+                                </div>
+                            </div>
+                            <div class="column col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
                                 </div>
                             </div>
 
                             <div class="column col-md-6">
-                                <!-- Email input -->
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Email address" required="required" data-error="Email is required.">
-                                    <div class="help-block with-errors"></div>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" required>
                                 </div>
                             </div>
 
                             <div class="column col-md-12">
-                                <!-- Email input -->
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="InputSubject" name="InputSubject" placeholder="Subject" required="required" data-error="Subject is required.">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="column col-md-12">
-                                <!-- Message textarea -->
-                                <div class="form-group">
-                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Message" required="required" data-error="Message is required."></textarea>
-                                    <div class="help-block with-errors"></div>
+                                    <textarea name="message" id="message" class="form-control" rows="5" placeholder="Message" required></textarea>
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-default">Send Message</button><!-- Send Button -->
-
+                        <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-default">Send Message</button>
                     </form>
-                    <!-- Contact Form end -->
                 </div>
 
             </div>
 
         </div>
-
     </section>
-
     <div class="spacer" data-height="96"></div>
-
 </main>
 
 <a href="javascript:" id="return-to-top"><i class="fas fa-arrow-up"></i></a>
@@ -440,6 +305,26 @@
 <script src="{{ asset('assets2/js/parallax.min.js') }}"></script>
 <script src="{{ asset('assets2/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('assets2/js/custom.js') }}"></script>
-
+<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script>
+    let getFormData = ($form) => {
+        let unindexed_array = $form.serializeArray();
+        let indexed_array = {};
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+    let $contactForm = $('#contact-form');
+    $contactForm.submit((e) => {
+        e.preventDefault();
+        let data = getFormData($contactForm);
+        $.post("{{ url('api/message/save') }}", data, () => {
+            swal.fire("Message send !");
+        }).fail(() => {
+            swal.fire("Fill all form !");
+        })
+    });
+</script>
 </body>
 </html>

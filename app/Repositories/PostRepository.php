@@ -17,15 +17,19 @@ class PostRepository extends Repository
     {
         $posts = $this->post;
 
-        $name = $request->input('name');
+        $order_date = $request->input('order_date') ?? '';
+        if ($order_date != '')
+            $posts = $posts->orderBy('date', $order_date);
+
+        $name = $request->input('name') ?? '';
         if ($name != '')
             $posts = $posts->where('name', 'like', "%$name%");
 
-        $category_id = $request->input('category_id');
+        $category_id = $request->input('category_id') ?? '';
         if ($category_id != '')
             $posts = $posts->where('category_id', "$category_id");
 
-        $tags = $request->input('tags');
+        $tags = $request->input('tags') ?? '';
         if ($tags != '')
             $posts = $posts->where('tags', 'like', "%$tags%");
 

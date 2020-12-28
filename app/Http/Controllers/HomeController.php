@@ -36,17 +36,22 @@ class HomeController extends Controller
         $github = $this->profile->find('Github', 'name')->content;
         $copyright = $this->profile->find('Copyrights', 'name')->content;
         $foto = $this->profile->find('Foto', 'name')->content;
+        $email = $this->profile->find('Email', 'name')->content;
         $services = $this->service->search(new Request());
         $service_colors = array('#6C6CE5', '#F9D74C', '#F97B8B');
         foreach ($services as $key => $service) {
             $services[$key]->color = $service_colors[$key];
         }
         $category = $this->category->find('Portofolio', 'name');
+        $blog = $this->category->find('Blog', 'name');
         $tags = $this->get_all_tags($category->id);
         $portofolio = $this->post->search(new Request(['category_id' => $category->id]));
+        $clients = $this->client->search(new Request());
+        $latest_posts = $this->post->search(new Request(['order_date' => 'desc', 'paginate' => 3, 'category_id' => $blog->id]));
         return view('home.index', compact(
             'favicon', 'logo', 'app_name', 'app_description', 'instagram',
-            'twitter', 'github', 'copyright', 'foto', 'services', 'portofolio', 'tags'
+            'twitter', 'github', 'copyright', 'foto', 'services', 'portofolio', 'tags', 'email',
+            'clients', 'latest_posts'
         ));
     }
 
