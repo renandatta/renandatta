@@ -24,31 +24,31 @@
 </head>
 
 <body class="dark">
-<div id="preloader">
-    <div class="outer">
-        <div class="infinityChrome">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+{{--<div id="preloader">--}}
+{{--    <div class="outer">--}}
+{{--        <div class="infinityChrome">--}}
+{{--            <div></div>--}}
+{{--            <div></div>--}}
+{{--            <div></div>--}}
+{{--        </div>--}}
 
-        <div class="infinity">
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-        </div>
+{{--        <div class="infinity">--}}
+{{--            <div><span></span></div>--}}
+{{--            <div><span></span></div>--}}
+{{--            <div><span></span></div>--}}
+{{--        </div>--}}
 
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-outer">
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-            </defs>
-        </svg>
-    </div>
-</div>
+{{--        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-outer">--}}
+{{--            <defs>--}}
+{{--                <filter id="goo">--}}
+{{--                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />--}}
+{{--                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />--}}
+{{--                    <feBlend in="SourceGraphic" in2="goo" />--}}
+{{--                </filter>--}}
+{{--            </defs>--}}
+{{--        </svg>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 <header class="mobile-header-1">
     <div class="container">
@@ -171,7 +171,7 @@
                 @foreach($portofolio as $item)
                     <div class="col-md-4 col-sm-6 grid-item {{ strtolower(join(' ', explode(',', $item->tags))) }}">
                         <a href="#small-dialog" class="work-content">
-                            <div class="portfolio-item rounded shadow-dark">
+                            <div class="portfolio-item rounded shadow-dark" style="border-radius: 5px!important;">
                                 <div class="details">
                                     <span class="term">{{ explode(',', $item->tags)[0] }}</span>
                                     <h4 class="title">{{ $item->name }}</h4>
@@ -195,6 +195,7 @@
 
     </section>
 
+    @if(count($clients) > 0)
     <section id="testimonials">
         <div class="container">
             <h2 class="section-title wow fadeInUp">Clients</h2>
@@ -211,6 +212,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <section id="blog">
         <div class="container">
@@ -219,18 +221,18 @@
             <div class="row blog-wrapper">
                 @foreach($latest_posts as $post)
                 <div class="col-md-4">
-                    <div class="blog-item rounded bg-dark shadow-light wow fadeIn">
+                    <div class="blog-item rounded bg-dark shadow-light wow fadeIn" style="border-radius: 5px!important;">
                         <div class="thumb">
                             <a href="#">
                                 <img src="{{ asset("assets/$post->image") }}" alt="{{ $post->name }}" />
                             </a>
                         </div>
-                        <div class="details">
-                            <h4 class="my-0 title"><a href="#">{{ $post->name }}</a></h4>
-                            <ul class="list-inline meta mb-0 mt-2">
-                                <li class="list-inline-item">{{ fulldate($post->date) }}</li>
-                            </ul>
-                        </div>
+{{--                        <div class="details">--}}
+{{--                            <h4 class="my-0 title"><a href="#">{{ $post->name }}</a></h4>--}}
+{{--                            <ul class="list-inline meta mb-0 mt-2">--}}
+{{--                                <li class="list-inline-item">{{ fulldate($post->date) }}</li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
                 @endforeach

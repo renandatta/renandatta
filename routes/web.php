@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -90,6 +91,14 @@ Route::prefix('admin')->group(function () {
         Route::post('info', [ClientController::class, 'info'])->name('admin.clients.info');
         Route::post('save', [ClientController::class, 'save'])->name('admin.clients.save');
         Route::post('delete', [ClientController::class, 'delete'])->name('admin.clients.delete');
+    });
+
+    Route::prefix('messages')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('admin.messages');
+        Route::post('search', [MessageController::class, 'search'])->name('admin.messages.search');
+        Route::post('info', [MessageController::class, 'info'])->name('admin.messages.info');
+        Route::post('save', [MessageController::class, 'save'])->name('admin.messages.save');
+        Route::post('delete', [MessageController::class, 'delete'])->name('admin.messages.delete');
     });
 });
 
