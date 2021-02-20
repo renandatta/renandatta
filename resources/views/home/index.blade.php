@@ -170,10 +170,10 @@
             <div class="row portfolio-wrapper">
                 @foreach($portofolio as $item)
                     <div class="col-md-4 col-sm-6 grid-item {{ strtolower(join(' ', explode(',', $item->tags))) }}">
-                        <a href="#small-dialog" class="work-content">
+                        <a href="#small-dialog{{ $item->id }}" class="work-content">
                             <div class="portfolio-item rounded shadow-dark" style="border-radius: 5px!important;">
                                 <div class="details">
-                                    <span class="term">{{ explode(',', $item->tags)[0] }}</span>
+                                    <span class="term">{{ $item->tags }}</span>
                                     <h4 class="title">{{ $item->name }}</h4>
                                     <span class="more-button"><i class="icon-options"></i></span>
                                 </div>
@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                         </a>
-                        <div id="small-dialog" class="white-popup zoom-anim-dialog mfp-hide">
+                        <div id="small-dialog{{ $item->id }}" class="white-popup zoom-anim-dialog mfp-hide">
                             <img src="{{ asset("assets/$item->image") }}" alt="Title" />
                             <h2>{{ $item->name }}</h2>
                             {!! $item->content !!}
@@ -222,11 +222,27 @@
                 @foreach($latest_posts as $post)
                 <div class="col-md-4">
                     <div class="blog-item rounded bg-dark shadow-light wow fadeIn" style="border-radius: 5px!important;">
-                        <div class="thumb">
-                            <a href="#">
-                                <img src="{{ asset("assets/$post->image") }}" alt="{{ $post->name }}" />
-                            </a>
+                        <a href="#small-dialog{{ $post->id }}" class="work-content">
+                            <div class="portfolio-item rounded shadow-dark" style="border-radius: 5px!important;">
+{{--                                <div class="details">--}}
+{{--                                    <h4 class="title">{{ $post->name }}</h4>--}}
+{{--                                </div>--}}
+                                <div class="thumb">
+                                    <img src="{{ asset("assets/$post->image") }}" alt="Portfolio-title" />
+{{--                                    <div class="mask"></div>--}}
+                                </div>
+                            </div>
+                        </a>
+                        <div id="small-dialog{{ $post->id }}" class="white-popup zoom-anim-dialog mfp-hide">
+                            <img src="{{ asset("assets/$post->image") }}" alt="Title" />
+                            <h2>{{ $post->name }}</h2>
+                            {!! $post->content !!}
                         </div>
+{{--                        <div class="thumb">--}}
+{{--                            <a href="#">--}}
+{{--                                <img src="{{ asset("assets/$post->image") }}" alt="{{ $post->name }}" />--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
 {{--                        <div class="details">--}}
 {{--                            <h4 class="my-0 title"><a href="#">{{ $post->name }}</a></h4>--}}
 {{--                            <ul class="list-inline meta mb-0 mt-2">--}}
